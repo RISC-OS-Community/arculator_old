@@ -1,0 +1,35 @@
+#!/bin/bash
+
+brew install automake-1.16
+brew install autoconf
+brew install wxwidgets
+brew install sdl2
+
+unlink ./INSTALL
+ln -s /opt/homebrew/share/automake-1.16/INSTALL ./INSTALL
+
+unlink ./compile 
+ln -s /opt/homebrew/share/automake-1.16/compile ./compile
+
+unlink ./config.guess
+ln -s /opt/homebrew/share/automake-1.16/config.guess ./config.guess
+
+unlink ./config.sub 
+ln -s /opt/homebrew/share/automake-1.16/config.sub  ./config.sub
+
+unlink ./depcomp 
+ln -s /opt/homebrew/share/automake-1.16/depcomp ./depcomp
+
+unlink ./install-sh
+ln -s /opt/homebrew/share/automake-1.16/install-sh ./install.sh
+
+unlink ./missing
+ln -s /opt/homebrew/share/automake-1.16/missing ./missing
+
+echo Dependecies installed.
+
+echo
+
+echo Now configure your build using:
+echo ./configure --with-sdl-prefix=/opt/homebrew/
+   

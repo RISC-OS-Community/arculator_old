@@ -1,6 +1,10 @@
 /*Arculator 2.1 by Sarah Walker
   SDL2 video handling*/
-#include <SDL2/SDL.h>
+// Paolo's fix: for macOS, needs proper redoing to keep it
+//              compatible with linux too.
+//              original was :  <SDL2/SDL.h>
+//              replaced with:  "/opt/homebrew/include/SDL2/SDL.h"
+#include "/opt/homebrew/include/SDL2/SDL.h"
 
 #if WIN32
 #define BITMAP __win_bitmap

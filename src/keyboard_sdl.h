@@ -1,4 +1,8 @@
-#include <SDL2/SDL.h>
+// Paolo's fix: for macOS, needs proper redoing to keep it
+//              compatible with linux too.
+//              original was :  <SDL2/SDL.h>
+//              replaced with:  "/opt/homebrew/include/SDL2/SDL.h"
+#include "/opt/homebrew/include/SDL2/SDL.h"
 
 #define KEY_ESC               SDL_SCANCODE_ESCAPE     /* keyboard scan codes  */
 #define KEY_1                 SDL_SCANCODE_1

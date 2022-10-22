@@ -2,7 +2,12 @@
   wxApp implementation
   Menus are also handled here*/
 #include <sstream>
-#include <SDL2/SDL.h>
+
+// Paolo's fix: for macOS, needs proper redoing to keep it
+//              compatible with linux too.
+//              original was :  <SDL2/SDL.h>
+//              replaced with:  "/opt/homebrew/include/SDL2/SDL.h"
+#include "/opt/homebrew/include/SDL2/SDL.h"
 
 #ifdef _WIN32
 #define BITMAP WINDOWS_BITMAP

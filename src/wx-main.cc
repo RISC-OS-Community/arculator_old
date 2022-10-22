@@ -1,7 +1,12 @@
 /*Arculator 2.1 by Sarah Walker
   Main function*/
 #include "wx-app.h"
-#include <SDL2/SDL.h>
+
+// Paolo's fix: for macOS, needs proper redoing to keep it
+//              compatible with linux too.
+//              original was :  <SDL2/SDL.h>
+//              replaced with:  "/opt/homebrew/include/SDL2/SDL.h"
+#include "/opt/homebrew/include/SDL2/SDL.h" 
 #include <wx/filename.h>
 #include "wx-config_sel.h"
 

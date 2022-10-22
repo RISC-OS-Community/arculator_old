@@ -1,6 +1,10 @@
 /*Arculator 2.1 by Sarah Walker
   SDL2 input handling*/
-#include <SDL2/SDL.h>
+// Paolo's fix: for macOS, needs proper redoing to keep it
+//              compatible with linux too.
+//              original was :  <SDL2/SDL.h>
+//              replaced with:  "/opt/homebrew/include/SDL2/SDL.h"
+#include "/opt/homebrew/include/SDL2/SDL.h"
 #include <string.h>
 #include "arc.h"
 #include "plat_input.h"
