@@ -1,30 +1,32 @@
 #!/bin/bash
 
-brew install automake-1.16
+function check_link() {
+    f="$1"
+    if [ -L ${f} ]; then
+        unlink ./${f}
+    fi
+    ln -s /opt/homebrew/share/automake-${am_ver}/${f} ./${f}
+}
+
+am_ver="1.16"
+brew install automake-${am_ver}
 brew install autoconf
 brew install wxwidgets
 brew install sdl2
 
-unlink ./INSTALL
-ln -s /opt/homebrew/share/automake-1.16/INSTALL ./INSTALL
+check_link "INSTALL"
 
-unlink ./compile 
-ln -s /opt/homebrew/share/automake-1.16/compile ./compile
+check_link "compile"
 
-unlink ./config.guess
-ln -s /opt/homebrew/share/automake-1.16/config.guess ./config.guess
+check_link "config.guess"
 
-unlink ./config.sub 
-ln -s /opt/homebrew/share/automake-1.16/config.sub  ./config.sub
+check_link "config.sub"
 
-unlink ./depcomp 
-ln -s /opt/homebrew/share/automake-1.16/depcomp ./depcomp
+check_link "depcomp"
 
-unlink ./install-sh
-ln -s /opt/homebrew/share/automake-1.16/install-sh ./install.sh
+check_link "install-sh"
 
-unlink ./missing
-ln -s /opt/homebrew/share/automake-1.16/missing ./missing
+check_link "missing"
 
 echo Dependecies installed.
 
