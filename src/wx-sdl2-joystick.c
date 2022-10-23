@@ -3,7 +3,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#if __APPLE__
+#include "/opt/homebrew/include/SDL2/SDL.h"
+#else
 #include <SDL2/SDL.h>
+#endif
 #include "arc.h"
 #include "joystick.h"
 #include "plat_joystick.h"
