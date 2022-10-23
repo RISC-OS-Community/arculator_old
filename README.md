@@ -8,7 +8,11 @@ For the original Arculator repository please check [here](https://github.com/sar
 
 # How to build on macOS
 
-Make sure you have Homebrew installed first.
+Before you try to build arculator, make sure you have:
+
+1) Apple Xcode fully installed and you have accepted the Apple license
+2) Homebrew installed and working
+3) XQuartx installed and working
 
 then clone this repo using a git client.
 
