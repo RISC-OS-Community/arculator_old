@@ -1,18 +1,133 @@
 #!/bin/bash
 
+# Configure build requirements:
+use_config=2
+
+if [ $use_config -eq 1 ];
+then
+    am_ver="1.15"
+    lt_ver="2.4.6"
+    ac_ver="2.69"
+    use_brew_automake="no"
+else
+    am_ver="1.16"
+    lt_ver="2.4.7"
+    ac_ver="2.71"
+    use_brew_automake="yes"
+fi
+
+# support functions:
+
+function check_arch() {
+    arch="`uname -m`"
+
+    case "${arch}" in
+        arm64)  brew_prefix="/opt/homebrew"
+                ;;
+
+            *)  brew_prefix="/usr/local/Homebrew"
+                ;;
+    esac
+}
+
 function check_link() {
     f="$1"
     if [ -L ${f} ]; then
         unlink ./${f}
     fi
-    ln -s /opt/homebrew/share/automake-${am_ver}/${f} ./${f}
+    if [ "${use_brew_automake}" == "no" ];
+    then
+        ln -s /usr/local/share/automake-${am_ver}/${f} ./${f}
+    else
+        ln -s ${brew_prefix}/share/automake-${am_ver}/${f} ./${f}
+    fi
 }
 
-am_ver="1.16"
-brew install automake-${am_ver}
-brew install autoconf
-brew install wxwidgets
-brew install sdl2
+############
+# setup:
+############
+
+check_arch
+
+if [ "${use_brew_automake}" == "no" ];
+then
+    brew uninstall automake autoconf libtool
+else
+    brew reinstall automake autoconf libtool
+fi
+
+brew reinstall wxwidgets
+brew reinstall sdl2
+
+if [ "$use_brew_automake" == "no" ];
+then
+  pushd ../
+
+    # add automake
+
+    if [ ! -f ./automake-${am_ver}.tar.gz ];
+    then
+      curl -O -L http://ftpmirror.gnu.org/automake/automake-${am_ver}.tar.gz
+
+      tar -xzf automake-${am_ver}.tar.gz
+
+      pushd automake-${am_ver}
+
+        ./configure
+
+        make
+
+        sudo make install
+
+      popd
+
+    fi
+
+    # Add libtool
+
+    if [ ! -f ./libtool-${lt_ver}.tar.gz ];
+    then
+
+      curl -OL http://ftpmirror.gnu.org/libtool/libtool-${lt_ver}.tar.gz
+
+      tar -xzf libtool-${lt_ver}.tar.gz
+
+      pushd libtool-${lt_ver}
+
+        ./configure
+
+        make
+
+        sudo make install
+
+      popd
+
+    fi
+
+    # Add autoconf
+
+    if [ ! -f ./autoconf-${ac_ver}.tar.gq ];
+    then
+
+      curl -OL http://mirror.serverion.com/gnu/autoconf/autoconf-${ac_ver}.tar.gz
+
+      tar -xzf autoconf-${ac_ver}.tar.gz
+
+      pushd autoconf-${ac_ver}
+
+          ./configure
+
+          make
+
+          sudo make install
+
+      popd
+
+    fi
+
+  popd
+
+fi
 
 check_link "INSTALL"
 
@@ -28,10 +143,15 @@ check_link "install-sh"
 
 check_link "missing"
 
+#export CFLAGS="${CFLAGS} -I/opt/X11/include"
+
 echo Dependecies installed.
 
 echo
 
 echo Now configure your build using:
-echo ./configure --with-sdl-prefix=/opt/homebrew/
+echo './configure --with-sdl-prefix=/opt/homebrew/ CFLAGS="${CFLAGS} -I/opt/X11/include"'
+echo 
+
+exit $?
    
