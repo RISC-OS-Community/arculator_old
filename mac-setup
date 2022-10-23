@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ "$1" == "force" ];
+then 
+    force_reinstall=1
+else
+    force_reinstall=0
+fi
+
 # Configure build requirements:
 use_config=2
 
@@ -53,7 +60,10 @@ if [ "${use_brew_automake}" == "no" ];
 then
     brew uninstall automake autoconf libtool
 else
-    brew reinstall automake autoconf libtool
+    if [ force_reinstall -eq 1 ];
+    then
+        brew reinstall automake autoconf libtool
+    fi
 fi
 
 brew reinstall wxwidgets
