@@ -2,11 +2,12 @@
   Main function*/
 #include "wx-app.h"
 
-// Paolo's fix: for macOS, needs proper redoing to keep it
-//              compatible with linux too.
-//              original was :  <SDL2/SDL.h>
-//              replaced with:  "/opt/homebrew/include/SDL2/SDL.h"
-#include "/opt/homebrew/include/SDL2/SDL.h" 
+// Paolo's fix: to use SDL2 from homebrew
+#if __APPLE__
+#include "/opt/homebrew/include/SDL2/SDL.h"
+#else
+#include <SDL2/SDL.h>
+#endif
 #include <wx/filename.h>
 #include "wx-config_sel.h"
 
