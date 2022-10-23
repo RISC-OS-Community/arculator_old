@@ -29,10 +29,10 @@ function check_arch() {
     arch="`uname -m`"
 
     case "${arch}" in
-        arm64)  brew_prefix="/opt/homebrew"
+        arm64)  brew_prefix="/opt/homebrew/Cellar"
                 ;;
 
-            *)  brew_prefix="/usr/local/Homebrew"
+            *)  brew_prefix="/usr/local/Cellar"
                 ;;
     esac
 }
@@ -46,7 +46,8 @@ function check_link() {
     then
         ln -s /usr/local/share/automake-${am_ver}/${f} ./${f}
     else
-        ln -s ${brew_prefix}/share/automake-${am_ver}/${f} ./${f}
+        ln -s ${brew_prefix}/automake/${am_ver}.*/share/automake-${am_ver}/ ./${f}
+        #ln -s ${brew_prefix}/share/automake-${am_ver}/${f} ./${f}
     fi
 }
 
@@ -63,6 +64,8 @@ else
     if [ force_reinstall -eq 1 ];
     then
         brew reinstall automake autoconf libtool
+    else
+        brew install automake autoconf libtool
     fi
 fi
 
