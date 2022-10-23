@@ -61,7 +61,7 @@ if [ "${use_brew_automake}" == "no" ];
 then
     brew uninstall automake autoconf libtool
 else
-    if [ force_reinstall -eq 1 ];
+    if [ $force_reinstall -eq 1 ];
     then
         brew reinstall automake autoconf libtool
     else
