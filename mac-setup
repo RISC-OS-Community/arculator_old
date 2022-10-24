@@ -81,9 +81,12 @@ then
   pushd ../
 
     # add automake
+    am_size=0
+    [ -f ./automake-${am_ver}.tar.gz ] && am_size=$(ls -l ./automake-${am_ver}.tar.gz | awk '{print  $5}')
 
-    if [ ! -f ./automake-${am_ver}.tar.gz ];
+    if [ ! -f ./automake-${am_ver}.tar.gz ] || [ $am_size -lt 250 ];
     then
+      [ -f ./automake-${am_ver}.tar.gz ] && rm ./automake-${am_ver}.tar.gz
       curl -O -L http://ftpmirror.gnu.org/automake/automake-${am_ver}.tar.gz
 
       tar -xzf automake-${am_ver}.tar.gz
@@ -101,11 +104,14 @@ then
     fi
 
     # Add libtool
+    lt_size=0
+    [ -f ./libtool-${lt_ver}.tar.gz ] && lt_size=$(ls -l ./libtool-${lt_ver}.tar.gz | awk '{print  $5}')
 
-    if [ ! -f ./libtool-${lt_ver}.tar.gz ];
+    if [ ! -f ./libtool-${lt_ver}.tar.gz ] || [ $lt_size -lt 360 ];
     then
+      [ -f ./libtool-${lt_ver}.tar.gz ] && rm ./libtool-${lt_ver}.tar.gz
 
-      curl -OL http://ftpmirror.gnu.org/libtool/libtool-${lt_ver}.tar.gz
+      curl -O -L http://ftpmirror.gnu.org/libtool/libtool-${lt_ver}.tar.gz
 
       tar -xzf libtool-${lt_ver}.tar.gz
 
@@ -122,11 +128,14 @@ then
     fi
 
     # Add autoconf
+    ac_size=0
+    [ -f ./autoconf-${ac_ver}.tar.gz ] && ac_size=$(ls -l ./autoconf-${ac_ver}.tar.gz | awk '{print  $5}')
 
-    if [ ! -f ./autoconf-${ac_ver}.tar.gq ];
+    if [ ! -f ./autoconf-${ac_ver}.tar.gz ] || [ $ac_size -lt 360 ];
     then
+      [ -f ./autoconf-${ac_ver}.tar.gz ] && rm ./autoconf-${ac_ver}.tar.gz
 
-      curl -OL http://mirror.serverion.com/gnu/autoconf/autoconf-${ac_ver}.tar.gz
+      curl -O -L http://ftpmirror.gnu.org/autoconf/autoconf-${ac_ver}.tar.gz
 
       tar -xzf autoconf-${ac_ver}.tar.gz
 
