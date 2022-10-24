@@ -166,6 +166,7 @@ echo Checking if X11 is in the clang default path, if not I will need admin priv
 if [ ! -L /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/X11 ];
 then
   sudo ln -s /opt/X11/include/X11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/X11
+  sudo ln -s /opt/X11/lib/ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/x11
 fi
 
 #export CFLAGS="${CFLAGS} -I/opt/X11/include"
@@ -174,8 +175,11 @@ echo Dependecies installed.
 
 echo
 
+autoupdate
+
 echo Now configure your build using:
-echo './configure --with-sdl-prefix=/opt/homebrew/'
+full_path=$(echo ${brew_prefix}/sdl2/*)
+echo "./configure --with-sdl-prefix=${full_path}/"
 echo 
 
 exit $?
