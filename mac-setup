@@ -175,7 +175,8 @@ echo Dependecies installed.
 
 echo
 
-autoupdate
+#autoupdate
+#autoreconf -f -i
 
 echo Now configure your build using:
 full_path=$(echo ${brew_prefix}/sdl2/*)
