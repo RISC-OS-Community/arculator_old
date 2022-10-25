@@ -1,4 +1,4 @@
-/*Arculator 2.1 by Sarah Walker
+/*Arculator 2.1 by Sarah Walker*/
 #include <SDL2/SDL.h>
 #include <string.h>
 #include "arc.h"
