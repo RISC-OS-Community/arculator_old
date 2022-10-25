@@ -1,11 +1,5 @@
 /*Arculator 2.1 by Sarah Walker
-  SDL2 input handling*/
-// Paolo's fix: to use SDL2 from homebrew
-#if __APPLE__
-#include "/opt/homebrew/include/SDL2/SDL.h"
-#else
 #include <SDL2/SDL.h>
-#endif
 #include <string.h>
 #include "arc.h"
 #include "plat_input.h"

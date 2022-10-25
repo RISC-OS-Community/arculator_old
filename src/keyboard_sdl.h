@@ -1,9 +1,4 @@
-// Paolo's fix: to use SDL2 from homebrew
-#if __APPLE__
-#include "/opt/homebrew/include/SDL2/SDL.h"
-#else
 #include <SDL2/SDL.h>
-#endif
 #define KEY_ESC               SDL_SCANCODE_ESCAPE     /* keyboard scan codes  */
 #define KEY_1                 SDL_SCANCODE_1
 #define KEY_2                 SDL_SCANCODE_2

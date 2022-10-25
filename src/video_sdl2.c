@@ -1,11 +1,6 @@
 /*Arculator 2.1 by Sarah Walker
   SDL2 video handling*/
-// Paolo's fix: to use SDL2 from homebrew
-#if __APPLE__
-#include "/opt/homebrew/include/SDL2/SDL.h"
-#else
 #include <SDL2/SDL.h>
-#endif
 #if WIN32
 #define BITMAP __win_bitmap
 #include <windows.h>

@@ -1,13 +1,7 @@
 /*Arculator 2.1 by Sarah Walker
   Main function*/
 #include "wx-app.h"
-
-// Paolo's fix: to use SDL2 from homebrew
-#if __APPLE__
-#include "/opt/homebrew/include/SDL2/SDL.h"
-#else
 #include <SDL2/SDL.h>
-#endif
 #include <wx/filename.h>
 #include "wx-config_sel.h"
 
