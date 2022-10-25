@@ -211,6 +211,11 @@ echo Now configure your build using:
 full_path=$(echo ${brew_prefix}/sdl2/*)
 ./configure --with-sdl-prefix=${full_path}/
 
+if [ -d ./arculator ];
+then
+    rm -rf ./arculator
+fi
+
 echo Done! 
 
 exit $?
