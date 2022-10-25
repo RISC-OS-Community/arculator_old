@@ -76,6 +76,16 @@ else
     brew install wxwidgets sdl2
 fi
 
+# We need SDL2 in the default path so:
+echo 
+echo Checking if SDL2 is in the clang default path, if not I will need admin privileges to create the symlink there
+echo This operation may require sudo privileges, so it may request for a password.
+echo
+if [ ! -L /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/SDL2 ];
+then
+  sudo ln -s ${brew_prefix}/sdl2/*/include/SDL2 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/SDL2
+fi
+
 if [ "$use_brew_automake" == "no" ];
 then
   pushd ../
