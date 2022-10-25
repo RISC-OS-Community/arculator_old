@@ -42,5 +42,6 @@ endif
 
 if OS_MACOSX
 arculator_SOURCES += hostfs-unix.c podules-macosx.c
+arculator_LDADD += -lX11
 endif
 
