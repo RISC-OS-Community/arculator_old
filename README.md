@@ -27,11 +27,6 @@ and run:
 ./mac-setup
 ```
 
-Then configure the build using:
-```
-./configure --with-sdl-prefix=/opt/homebrew/
-```
-
 And then try to build using:
 ```
 make
