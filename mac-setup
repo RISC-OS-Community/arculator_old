@@ -188,16 +188,17 @@ echo
 
 # Reconfigure Project:
 
-aclocal -I ${brew_prefix}/wxwidgets/*/share/wx/*/aclocal/
+aclocal -I ${brew_prefix}/wxwidgets/*/share/wx/*/aclocal/ -I ${brew_prefix}/sdl2/*/share/aclocal/ -I /opt/X11/share/aclocal/
 autoconf
 automake --add-missing --force-missing
-./config.status libtool
+autoreconf --force --install -I ${brew_prefix}/wxwidgets/*/share/wx/*/aclocal/ -I ${brew_prefix}/sdl2/*/share/aclocal/ -I /opt/X11/share/aclocal/
 #autoupdate
 
 echo Now configure your build using:
 full_path=$(echo ${brew_prefix}/sdl2/*)
-echo "./configure --with-sdl-prefix=${full_path}/"
-echo 
+./configure --with-sdl-prefix=${full_path}/
+
+echo Done! 
 
 exit $?
    
