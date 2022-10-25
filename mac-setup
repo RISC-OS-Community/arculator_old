@@ -184,8 +184,15 @@ echo Dependecies installed.
 
 echo
 
-#autoupdate
 #autoreconf -f -i
+
+# Reconfigure Project:
+
+aclocal -I ${brew_prefix}/wxwidgets/*/share/wx/*/aclocal/
+autoconf
+automake --add-missing --force-missing
+./config.status libtool
+#autoupdate
 
 echo Now configure your build using:
 full_path=$(echo ${brew_prefix}/sdl2/*)
