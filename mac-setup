@@ -193,9 +193,9 @@ echo Dependecies installed.
 echo
 
 # Reconfigure Project:
-#aclocal -I ${brew_prefix}/wxwidgets/*/share/wx/*/aclocal/ -I ${brew_prefix}/sdl2/*/share/aclocal/ -I /opt/X11/share/aclocal/
-#autoconf
-#automake --add-missing --force-missing
+aclocal -I ${brew_prefix}/wxwidgets/*/share/wx/*/aclocal/ -I ${brew_prefix}/sdl2/*/share/aclocal/ -I /opt/X11/share/aclocal/
+autoconf
+automake --add-missing --force-missing
 autoreconf --force --install -I ${brew_prefix}/wxwidgets/*/share/wx/*/aclocal/ -I ${brew_prefix}/sdl2/*/share/aclocal/ -I /opt/X11/share/aclocal/
 autoupdate
 aclocal -I ${brew_prefix}/wxwidgets/*/share/wx/*/aclocal/ -I ${brew_prefix}/sdl2/*/share/aclocal/ -I /opt/X11/share/aclocal/
